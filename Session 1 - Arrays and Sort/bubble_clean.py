@@ -6,6 +6,7 @@ def bubble_sort(arr):
         for j in range(n - 1):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                print(arr)
 
 # 'i' indicates an array of integers
 # Types can be found in the array module documentation

@@ -13,5 +13,3 @@ numbers = array.array('i', [34, 7, 23, 32, 5, 62, 78, 1, 45, 19])
 
 bubble_sort(numbers)
 print(numbers)
-
-

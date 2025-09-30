@@ -23,15 +23,57 @@ def print_list(first_node):
         # display content
         print(current_node.value)
         
-
 # Appending
+def append(first_node, new_value):
+    # Traverse until the end
+    current_node = first_node
+    while current_node.next != None:
+        current_node = current_node.next
+    # At the end of the loop, the current should have None as next
+    # aka last node
+    # create new node and link previous
+    new_node = Node(new_value)
+    current_node.next = new_node
+
 # Insertion
 # Deletion
+def delete_value(first_node, value):
+    # First, traverse in linear search mode
+    # If no match, nothing happens
+    # If match change the links
+    current_node = first_node
+
+    # Case if we have only one element and it is a match
+    if current_node.value == value and current_node.next == None:
+        current_node = None
+
+    # Traverse
+    while current_node.next != None:
+        next_node = next
+
+        # If the next node's value is what we want
+        # Link current with next of next
+        # Then void next
+        if next_node.value == value:
+            current_node.next = next_node.next
+            next_node = None
+            return # Exit the function
+        
+        # else just keep moving
+        current_node = next_node
+
 
 def main():
     # Linked list creation = create the new node
     # The first node IS the list
     head = Node(10)
+    #print_list(head)
+
+    # Append a few numbers
+    append(head, 15)
+    append(head, 20)
+    append(head, 7)
+
     print_list(head)
 
 

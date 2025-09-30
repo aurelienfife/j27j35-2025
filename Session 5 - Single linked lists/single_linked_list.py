@@ -49,7 +49,7 @@ def delete_value(first_node, value):
 
     # Traverse
     while current_node.next != None:
-        next_node = next
+        next_node = current_node.next
 
         # If the next node's value is what we want
         # Link current with next of next
@@ -76,6 +76,9 @@ def main():
 
     print_list(head)
 
+    delete_value(head, 20)
+
+    print_list(head)
 
 if __name__ == "__main__":
     main()

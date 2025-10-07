@@ -1,5 +1,4 @@
 # Some stack functions (non-OO)
-
 def push(s, new_element):
     s.append(new_element)
     

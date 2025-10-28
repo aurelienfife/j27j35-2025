@@ -19,8 +19,13 @@ class Queue:
         self.front = None
         self.back = None
         self.current_size = 0
-        
-            
+    
+    # Add the methods
+    def isEmpty(self):
+        return self.front is None
+    
+    
+
 
 
 # Quick example - with an array

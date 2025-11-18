@@ -14,7 +14,6 @@ def in_order(node):
         in_order(node.left)
         print(node.value, end=" ")
         in_order(node.right)
-    # Recursion: no need to worry about loops
 
 def pre_order(node):
     if node:
@@ -29,26 +28,39 @@ def post_order(node):
         print(node.value, end=" ")
 
 
-
+test_data = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 root = BTreeNode('R')
-nodeA = BTreeNode('A')
-nodeB = BTreeNode('B')
-nodeC = BTreeNode('C')
-nodeD = BTreeNode('D')
-nodeE = BTreeNode('E')
-nodeF = BTreeNode('F')
-nodeG = BTreeNode('G')
 
-root.left = nodeA
-root.right = nodeB
 
-nodeA.left = nodeC
-nodeA.right = nodeD
+# Level-order insertion
+# (top to bottom, left to right)
 
-nodeB.left = nodeE
-nodeB.right = nodeF
 
-nodeF.left = nodeG
+# BST insertion
+# (left < node < right)
+
+
+
+
+# root = BTreeNode('R')
+# nodeA = BTreeNode('A')
+# nodeB = BTreeNode('B')
+# nodeC = BTreeNode('C')
+# nodeD = BTreeNode('D')
+# nodeE = BTreeNode('E')
+# nodeF = BTreeNode('F')
+# nodeG = BTreeNode('G')
+
+# root.left = nodeA
+# root.right = nodeB
+
+# nodeA.left = nodeC
+# nodeA.right = nodeD
+
+# nodeB.left = nodeE
+# nodeB.right = nodeF
+
+# nodeF.left = nodeG
 
 in_order(root)
 print()

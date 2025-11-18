@@ -64,8 +64,9 @@ def level_order_insert(root, value):
 test_data = ['R', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
 root = None
 
-root=level_order_insert(root, 'R')
-
+for v in test_data:
+    root = level_order_insert(root, v)
+    
 
 # BST insertion
 # (left < node < right)
@@ -100,3 +101,53 @@ print()
 post_order(root)
 print()
 
+def print_tree(root):
+    if not root:
+        print("<empty>")
+        return
+
+    # Collect nodes level by level
+    levels = []
+    queue = [(root, 0)]
+    max_width = 0
+    while queue:
+        node, level = queue.pop(0)
+        if len(levels) <= level:
+            levels.append([])
+        if node:
+            levels[level].append(node.value)
+            queue.append((node.left, level + 1))
+            queue.append((node.right, level + 1))
+        else:
+            levels[level].append(None)
+            queue.append((None, level + 1))
+            queue.append((None, level + 1))
+        # Stop if the last level is all None (no more nodes)
+        if level > 0 and all(n is None for n in levels[level]):
+            levels.pop()
+            break
+
+    # Calculate width for centering
+    max_nodes = 2 ** (len(levels) - 1)
+    max_width = max_nodes * 3
+
+    for i, level in enumerate(levels):
+        spacing = max_width // (2 ** i + 1)
+        line = ""
+        connectors = ""
+        for j, val in enumerate(level):
+            node_str = " " if val is None else str(val)
+            line += node_str.center(spacing)
+            # Draw connectors except for the last level
+            if i < len(levels) - 1:
+                if val is not None:
+                    left = "/" if levels[i+1][2*j] is not None else " "
+                    right = "\\" if levels[i+1][2*j+1] is not None else " "
+                else:
+                    left = right = " "
+                connectors += left + " " * (spacing - 2) + right + " " * (spacing - 2)
+        print(line.center(max_width))
+        if connectors.strip():
+            print(connectors.center(max_width))
+
+print_tree(root)

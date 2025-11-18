@@ -28,12 +28,43 @@ def post_order(node):
         print(node.value, end=" ")
 
 
-test_data = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-root = BTreeNode('R')
-
-
 # Level-order insertion
 # (top to bottom, left to right)
+def level_order_insert(root, value):
+    if root is None:
+        return BTreeNode(value)
+    # If root is not none queue element
+    queue = [root]
+
+    # While elements are in the queue
+    # Dequeue the first available node
+    while queue:
+        node = queue.pop(0)
+
+        # If left or right are available
+        # Create new node there and end
+        # Otherwise send left / right to queue and continue
+
+        if node.left is None:
+            node.left = BTreeNode(value)
+            break
+        else:
+            queue.append(node.left)
+        
+        if node.right is None:
+            node.right = BTreeNode(value)
+            break
+        else:
+            queue.append(node.right)
+
+    # Return the tree's root 
+    return root
+
+
+test_data = ['R', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
+root = None
+
+root=level_order_insert(root, 'R')
 
 
 # BST insertion

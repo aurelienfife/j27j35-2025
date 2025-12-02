@@ -64,8 +64,46 @@ def level_order_insert(root, value):
 
 
 # Delete node: deepest
-def delete_deepest(root):
-    pass
+# Function to delete the deepest node
+# in the binary tree
+def delete_deepest(root, dNode):
+    queue = [root]
+
+    while queue:
+        curr = queue.pop(0)
+
+        # If current node is the deepest 
+        # node, delete it
+        if curr == dNode:
+            curr = None
+            del dNode
+            return
+
+        # Check the right child first
+        if curr.right:
+          
+            # If right child is the deepest
+            # node, delete it
+            if curr.right == dNode:
+                curr.right = None
+                del dNode
+                return
+            queue.append(curr.right)
+
+        # Check the left child
+        if curr.left:
+          
+            # If left child is the deepest
+            # node, delete it
+            if curr.left == dNode:
+                curr.left = None
+                del dNode
+                return
+            queue.append(curr.left)
+
+
+
+
 
 # Delete node: value
 def delete_node(root, key):
@@ -96,7 +134,7 @@ def delete_node(root, key):
         current = queue.pop(0)
 
         # Check if element is found
-        if current.data == key:
+        if current.value == key:
             key_node = current
         
         # If left and right have a value (not None)
@@ -115,24 +153,14 @@ def delete_node(root, key):
     # data of current_node
     if key_node is not None:
 
-        v = current.data
-        key_node.data = v
+        v = current.value
+        key_node.value = v
 
         # Delete the deepest node
         # Another function
-        delete_deepest(root)
+        delete_deepest(root, current)
 
     return root
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -158,6 +186,19 @@ def print_tree(node, indent="", last=True):
         print_tree(node.left, indent + ("   " if last else "│  "), True)
 
 print_tree(root)
+
+# Testing
+root = delete_node(root, 'D')
+
+# Printing
+print_tree(root)
+
+
+
+
+
+
+
 
 # BST insertion
 # (left < node < right)
